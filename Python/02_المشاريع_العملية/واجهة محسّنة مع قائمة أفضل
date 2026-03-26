@@ -1,0 +1,12 @@
+def display_menu():
+    print("\n" + "="*40)
+    print("حاسبة بسيطة")
+    print("="*40)
+    print("1. جمع")
+    print("2. طرح")
+    print("3. ضرب")
+    print("4. قسمة")
+    print("5. أس (Power)")
+    print("6. عرض السجل")
+    print("7. خروج")
+    print("="*40)
