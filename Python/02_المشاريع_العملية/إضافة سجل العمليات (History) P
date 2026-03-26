@@ -1,0 +1,3 @@
+history = []
+# ثم حفظ كل عملية:
+history.append(f"{num1} {operation} {num2} = {result}")
