@@ -1,0 +1,4 @@
+def save_history(history, filename='calculator_history.txt'):
+    with open(filename, 'w') as f:
+        for item in history:
+            f.write(item + '\n')
