@@ -1,0 +1,44 @@
+name: اختبارات Rust
+
+on:
+  push:
+    branches: [ main, master ]
+    paths:
+      - 'rust/**'
+      - 'Cargo.toml'
+      - 'tests/rust_tests.rs'
+  pull_request:
+    branches: [ main, master ]
+
+permissions:
+  contents: read
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: إعداد Rust
+        uses: actions-rs/toolchain@v1
+        with:
+          toolchain: stable
+          override: true
+          components: rustfmt, clippy
+
+      - name: تشغيل اختبارات Cargo
+        run: |
+          cargo test
+
+      - name: فحص الكود مع Clippy
+        run: |
+          cargo clippy -- -D warnings
+
+      - name: التحقق من التنسيق
+        run: |
+          cargo fmt --all -- --check
+
+      - name: بناء المشروع
+        run: |
+          cargo build

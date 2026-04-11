@@ -1,0 +1,54 @@
+name: اختبارات Python
+
+on:
+  push:
+    branches: [ main, master ]
+    paths:
+      - 'python/**'
+      - 'tests/python_tests.py'
+      - 'requirements.txt'
+  pull_request:
+    branches: [ main, master ]
+
+permissions:
+  contents: read
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python-version: ["3.9", "3.10", "3.11"]
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: إعداد Python ${{ matrix.python-version }}
+        uses: actions/setup-python@v4
+        with:
+          python-version: ${{ matrix.python-version }}
+
+      - name: تثبيت التبعيات
+        run: |
+          python -m pip install --upgrade pip
+          pip install pytest pytest-cov
+          if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
+
+      - name: تشغيل الاختبارات
+        run: |
+          pytest tests/python_tests.py -v --tb=short
+
+      - name: التحقق من صحة ملفات Python
+        run: |
+          python -m py_compile python/01-basics/hello_world.py
+          python -m py_compile python/01-basics/variables.py
+          python -m py_compile python/01-basics/data_types.py
+          python -m py_compile python/02-control-flow/if_else.py
+          python -m py_compile python/02-control-flow/loops.py
+          python -m py_compile python/03-functions/functions.py
+          python -m py_compile python/03-functions/lambda.py
+          python -m py_compile python/04-oop/classes.py
+          python -m py_compile python/04-oop/inheritance.py
+          python -m py_compile python/projects/calculator/calculator.py
+          python -m py_compile python/projects/todo_app/todo.py
+          python -m py_compile python/projects/web_scraper/scraper.py
