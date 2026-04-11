@@ -54,8 +54,8 @@ func main() {
 
 	// ===== حزمة rand =====
 	fmt.Println("\n=== حزمة rand ===")
-	rand.Seed(time.Now().UnixNano())
+	rng := rand.New(rand.NewSource(time.Now().UnixNano()))
 	for i := 0; i < 5; i++ {
-		fmt.Printf("رقم عشوائي: %d\n", rand.Intn(100))
+		fmt.Printf("رقم عشوائي: %d\n", rng.Intn(100))
 	}
 }
