@@ -1,44 +1,65 @@
-name: اختبارات Rust
+name: Rust Tests
 
 on:
   push:
-    branches: [ main, master ]
+    branches: [ main, develop ]
     paths:
       - 'rust/**'
-      - 'Cargo.toml'
-      - 'tests/rust_tests.rs'
+      - '.github/workflows/rust-tests.yml'
   pull_request:
-    branches: [ main, master ]
-
-permissions:
-  contents: read
+    branches: [ main, develop ]
+    paths:
+      - 'rust/**'
 
 jobs:
   test:
     runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        rust-version: [stable, beta, nightly]
 
     steps:
-      - uses: actions/checkout@v4
-
-      - name: إعداد Rust
-        uses: actions-rs/toolchain@v1
-        with:
-          toolchain: stable
-          override: true
-          components: rustfmt, clippy
-
-      - name: تشغيل اختبارات Cargo
-        run: |
-          cargo test
-
-      - name: فحص الكود مع Clippy
-        run: |
-          cargo clippy -- -D warnings
-
-      - name: التحقق من التنسيق
-        run: |
-          cargo fmt --all -- --check
-
-      - name: بناء المشروع
-        run: |
-          cargo build
+    - uses: actions/checkout@v4
+    
+    - name: Set up Rust ${{ matrix.rust-version }}
+      uses: dtolnay/rust-toolchain@master
+      with:
+        toolchain: ${{ matrix.rust-version }}
+    
+    - name: Cache cargo registry
+      uses: actions/cache@v3
+      with:
+        path: ~/.cargo/registry
+        key: ${{ runner.os }}-cargo-registry-${{ hashFiles('**/Cargo.lock') }}
+    
+    - name: Cache cargo index
+      uses: actions/cache@v3
+      with:
+        path: ~/.cargo/git
+        key: ${{ runner.os }}-cargo-git-${{ hashFiles('**/Cargo.lock') }}
+    
+    - name: Cache cargo build
+      uses: actions/cache@v3
+      with:
+        path: rust/target
+        key: ${{ runner.os }}-cargo-build-target-${{ hashFiles('**/Cargo.lock') }}
+    
+    - name: Run clippy
+      run: |
+        cd rust
+        cargo clippy --all --all-targets -- -D warnings
+    
+    - name: Check formatting
+      run: |
+        cd rust
+        cargo fmt -- --check
+    
+    - name: Run tests
+      run: |
+        cd rust
+        cargo test --verbose
+    
+    - name: Build release
+      run: |
+        cd rust
+        cargo build --release --verbose
