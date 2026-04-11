@@ -1,0 +1,7 @@
+[package]
+name = "system_monitor"
+version = "1.0.0"
+edition = "2021"
+description = "مراقب موارد النظام - System Monitor"
+
+[dependencies]
