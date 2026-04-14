@@ -1,0 +1,72 @@
+name: "🐞 بلاغ عن خطأ (Bug)"
+description: "الإبلاغ عن مشكلة أو سلوك غير صحيح"
+title: "[Bug]: "
+labels:
+  - "bug"
+body:
+  - type: markdown
+    attributes:
+      value: |
+        شكرًا لبلاغك! الرجاء تعبئة المعلومات التالية لتسهيل حل المشكلة.
+
+  - type: input
+    id: environment
+    attributes:
+      label: "بيئة التشغيل"
+      description: "مثال: Ubuntu 22.04 / Windows 11 / macOS، وإصدار Python / Go / Rust إن كان ذا صلة."
+      placeholder: "مثال: Ubuntu 22.04، Python 3.11"
+    validations:
+      required: true
+
+  - type: dropdown
+    id: area
+    attributes:
+      label: "القسم المتأثر"
+      options:
+        - "Python"
+        - "Go"
+        - "Rust"
+        - "GitHub Actions / CI"
+        - "التوثيق (Documentation)"
+        - "أخرى (Other)"
+    validations:
+      required: true
+
+  - type: textarea
+    id: what_happened
+    attributes:
+      label: "ما الذي حدث؟"
+      description: "اشرح المشكلة بوضوح."
+      placeholder: "عند تشغيل ... تظهر رسالة خطأ ..."
+    validations:
+      required: true
+
+  - type: textarea
+    id: expected
+    attributes:
+      label: "ما المتوقع حدوثه؟"
+      placeholder: "المتوقع أن ..."
+    validations:
+      required: true
+
+  - type: textarea
+    id: steps
+    attributes:
+      label: "خطوات إعادة المشكلة (Reproduction steps)"
+      description: "اكتب خطوات واضحة أو أوامر."
+      placeholder: |
+        1) ...
+        2) ...
+        3) ...
+    validations:
+      required: true
+
+  - type: textarea
+    id: logs
+    attributes:
+      label: "سجلات / مخرجات (Logs) أو صور (اختياري)"
+      render: bash
+      placeholder: |
+        الصق هنا أي logs أو stack trace ...
+    validations:
+      required: false
