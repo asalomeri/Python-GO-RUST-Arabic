@@ -1,0 +1,5 @@
+blank_issues_enabled: false
+contact_links:
+  - name: "📘 اقرأ ملف README"
+    url: "https://github.com/asalomeri/Python-GO-RUST-Arabic#readme"
+    about: "قبل فتح Issue، راجع README لمعرفة طريقة التشغيل وبنية المشروع. استخدم قوالب الأخطاء أو طلبات الميزات المتوفرة أعلاه."
