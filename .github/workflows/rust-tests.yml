@@ -19,7 +19,7 @@ jobs:
         rust-version: [stable, beta, nightly]
 
     steps:
-    - uses: actions/checkout@v4
+    - uses: actions/checkout@v6
     
     - name: Set up Rust ${{ matrix.rust-version }}
       uses: dtolnay/rust-toolchain@master
@@ -27,19 +27,19 @@ jobs:
         toolchain: ${{ matrix.rust-version }}
     
     - name: Cache cargo registry
-      uses: actions/cache@v3
+      uses: actions/cache@v5
       with:
         path: ~/.cargo/registry
         key: ${{ runner.os }}-cargo-registry-${{ hashFiles('**/Cargo.lock') }}
     
     - name: Cache cargo index
-      uses: actions/cache@v3
+      uses: actions/cache@v5
       with:
         path: ~/.cargo/git
         key: ${{ runner.os }}-cargo-git-${{ hashFiles('**/Cargo.lock') }}
     
     - name: Cache cargo build
-      uses: actions/cache@v3
+      uses: actions/cache@v5
       with:
         path: rust/target
         key: ${{ runner.os }}-cargo-build-target-${{ hashFiles('**/Cargo.lock') }}
