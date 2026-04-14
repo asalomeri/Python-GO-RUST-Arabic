@@ -1,0 +1,8 @@
+blank_issues_enabled: false
+contact_links:
+  - name: "📘 اقرأ ملف README أولاً"
+    url: "https://github.com/asalomeri/Python-GO-RUST-Arabic#readme"
+    about: "قبل فتح Issue، راجع README للتعرف على هيكل المستودع وطريقة التشغيل."
+  - name: "🤝 دليل المساهمة (CONTRIBUTING)"
+    url: "https://github.com/asalomeri/Python-GO-RUST-Arabic/blob/main/docs/CONTRIBUTING.md"
+    about: "اقرأ دليل المساهمة لمعرفة كيفية فتح Issues و PRs بالطريقة الصحيحة."
