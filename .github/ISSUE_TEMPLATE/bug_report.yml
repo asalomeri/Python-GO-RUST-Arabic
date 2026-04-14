@@ -1,0 +1,72 @@
+name: "🐞 بلاغ عن خطأ (Bug Report)"
+description: "الإبلاغ عن سلوك غير صحيح أو خطأ في الكود أو التوثيق"
+title: "[Bug]: "
+labels: ["bug"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        شكرًا لبلاغك! الرجاء تعبئة المعلومات التالية بدقة لتسريع إصلاح المشكلة.
+
+  - type: dropdown
+    id: area
+    attributes:
+      label: "القسم المتأثر"
+      description: "أي جزء من المستودع تتعلق به المشكلة؟"
+      options:
+        - "Python"
+        - "Go"
+        - "Rust"
+        - "GitHub Actions / CI"
+        - "توثيق (Documentation)"
+        - "أخرى (Other)"
+    validations:
+      required: true
+
+  - type: input
+    id: environment
+    attributes:
+      label: "بيئة التشغيل"
+      description: "نظام التشغيل وإصدار اللغة المستخدمة"
+      placeholder: "مثال: Ubuntu 22.04، Python 3.11 / Go 1.21 / Rust 1.78"
+    validations:
+      required: true
+
+  - type: textarea
+    id: what_happened
+    attributes:
+      label: "ما الذي حدث؟"
+      description: "اشرح المشكلة بوضوح وإيجاز"
+      placeholder: "عند تشغيل ... تظهر رسالة خطأ ..."
+    validations:
+      required: true
+
+  - type: textarea
+    id: expected
+    attributes:
+      label: "ما المتوقع حدوثه؟"
+      placeholder: "كان المتوقع أن ..."
+    validations:
+      required: true
+
+  - type: textarea
+    id: steps
+    attributes:
+      label: "خطوات إعادة إنتاج المشكلة"
+      description: "اكتب خطوات واضحة أو أوامر يمكن تكرارها"
+      placeholder: |
+        1. انتقل إلى المجلد ...
+        2. شغّل الأمر ...
+        3. لاحظ الخطأ ...
+    validations:
+      required: true
+
+  - type: textarea
+    id: logs
+    attributes:
+      label: "سجلات/مخرجات (اختياري)"
+      render: shell
+      description: "الصق هنا أي رسائل خطأ أو stack trace"
+      placeholder: "Traceback (most recent call last): ..."
+    validations:
+      required: false

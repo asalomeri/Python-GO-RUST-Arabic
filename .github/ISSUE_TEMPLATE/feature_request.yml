@@ -1,0 +1,57 @@
+name: "✨ طلب ميزة (Feature Request)"
+description: "اقتراح ميزة جديدة أو تحسين في المحتوى التعليمي أو الأدوات"
+title: "[Feature]: "
+labels: ["enhancement"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        شكرًا لاقتراحك! الرجاء توضيح الفكرة بأكبر قدر ممكن حتى نتمكن من تقييمها.
+
+  - type: dropdown
+    id: area
+    attributes:
+      label: "القسم"
+      description: "أي قسم يتعلق به الاقتراح؟"
+      options:
+        - "Python"
+        - "Go"
+        - "Rust"
+        - "GitHub Actions / CI"
+        - "توثيق (Documentation)"
+        - "أخرى (Other)"
+    validations:
+      required: true
+
+  - type: textarea
+    id: problem
+    attributes:
+      label: "المشكلة أو الاحتياج"
+      description: "ما المشكلة التي تحلها هذه الميزة؟ أو ما الذي يفتقده المستودع حالياً؟"
+      placeholder: "حالياً لا يوجد مثال على ... / سيكون مفيداً لو أُضيف ..."
+    validations:
+      required: true
+
+  - type: textarea
+    id: proposal
+    attributes:
+      label: "الحل/الميزة المقترحة"
+      placeholder: "أقترح إضافة مثال/قسم/ميزة ..."
+    validations:
+      required: true
+
+  - type: textarea
+    id: alternatives
+    attributes:
+      label: "بدائل تم النظر فيها (اختياري)"
+      placeholder: "بديل 1: ... / بديل 2: ..."
+    validations:
+      required: false
+
+  - type: textarea
+    id: extra
+    attributes:
+      label: "معلومات إضافية (اختياري)"
+      description: "روابط، أمثلة، مراجع، أو أي شيء آخر مفيد"
+    validations:
+      required: false
