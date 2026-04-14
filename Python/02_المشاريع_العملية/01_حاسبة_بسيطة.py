@@ -1,4 +1,3 @@
-"""
 # ================================
 # حاسبة متقدمة مع سجل العمليات
 # Advanced Calculator with History
@@ -192,4 +191,3 @@ def main():
 
 if __name__ == "__main__":
     main()
-"""
