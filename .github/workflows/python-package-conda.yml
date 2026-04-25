@@ -36,3 +36,11 @@ jobs:
       run: |
         conda install pytest
         pytest
+  - name: Clean conda plugins
+    run: |
+      if [ -d "$HOME/.conda/plugins" ]; then
+        rm -rf $HOME/.conda/plugins/*
+      fi
+
+  - name: Update conda
+    run: conda update -n base -c defaults conda -y
